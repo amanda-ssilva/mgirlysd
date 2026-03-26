@@ -39,3 +39,12 @@ header {
 
 }
 
+/* UL sistema de lista */
+.menu {
+list-style: none;
+/* Lista horizontal */
+display: flex;
+/* espaço entre TAGs*/
+gap: 1rem; /* um rem */
+}
+
