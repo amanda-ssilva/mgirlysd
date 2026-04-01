@@ -33,7 +33,7 @@ header {
  display: flex;
  justify-content: space-between;
  align-items: center;
- background-color: rgb(230, 228, 231);
+ background-color: rgb(157, 155, 158);
  /* Largura ou Comprimento */
  width: 100%;
 
@@ -47,4 +47,43 @@ display: flex;
 /* espaço entre TAGs*/
 gap: 1rem; /* um rem */
 }
+
+/* Tag NAV */
+.menu-desktop{
+    display: none;
+}
+
+/* Logo */
+.logo {
+ width: 5rem;
+}
+
+
+/* Daqui pra cima Versão Mobile */
+
+
+/* Responsivo */
+/* Serve para as telas Maiores */
+
+/* Telas Maiores que 768px */
+
+@media (min-width: 768px) {
+ header{
+    /* espaço inteiro */
+    padding: 1rem 6rem;
+    justify-content: ;
+    gap: ;
+ }
+
+
+    /* NAV */
+ .menu-desktop {
+    display: flex;
+ }
+
+}
+
+
+
+
 
