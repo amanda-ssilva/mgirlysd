@@ -130,6 +130,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
+    // --- Contact Form Handling ---
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const status = document.getElementById('form-status');
+            const data = new FormData(contactForm);
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Enviando...</span>';
+            status.textContent = 'Enviando sua mensagem...';
+            status.className = 'form-status';
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.textContent = 'E-mail enviado com sucesso! ✨';
+                    status.className = 'form-status success';
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Enviar Mensagem</span>';
+                } else {
+                    // Se o AJAX falhar, tentamos o envio tradicional como backup
+                    contactForm.submit();
+                }
+            }).catch(error => {
+                // Em caso de erro de rede (comum em arquivos locais), usamos o envio tradicional
+                contactForm.submit();
+            });
+        });
+    }
+
+    // --- Login Form Handling ---
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            alert(`Bem-vinda de volta! Acesso simulado para: ${email}`);
+            loginForm.reset();
+        });
+    }
+
+    // --- Smooth Scroll for anchor links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     // Close menu when a link is clicked
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
